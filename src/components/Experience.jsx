@@ -84,14 +84,7 @@ const Experience = () => {
                       <h3 className="font-display font-semibold text-2xl mb-1" style={{ color: 'var(--color-text-primary)' }}>
                         {exp.role}
                       </h3>
-                      <div style={{ color: 'var(--color-text-secondary)' }}>{exp.company}</div>
-                      <ul className="space-y-2 mb-4">
-                        {exp.achievements.map((achievement, i) => (
-                          <li key={i} className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                            • {achievement}
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>{exp.company}</div>
                       <div className="flex flex-wrap gap-2">
                         {exp.tech.map((tech) => (
                           <span
