@@ -1,10 +1,8 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { Inter } from 'next/font/google';
-import { ThemeProvider, createTheme, cssBaseline } from '@/design-system';
-
-const inter = Inter({ subsets: ['latin'], variable: true });
+import { ThemeProvider as DesignSystemProvider, createTheme } from '@/design-system';
+import { ThemeProvider } from '@/app/theme-context';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import ThemeWrapper from '@/app/theme-wrapper';
 
 export const metadata = {
   title: 'Riyashika Nedunchezhian',
@@ -14,27 +12,21 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-  params: { searchParams },
 }: {
   children: React.ReactNode;
-  params: { searchParams: Record<string, string> };
 }) {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    setTheme(saved ?? 'dark');
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
   return (
     <html lang="en">
-      <body className={[theme === 'dark' && 'dark', cssBaseline].join(' ')}>
-        <ThemeProvider value={{ theme, setTheme }}>{children}</ThemeProvider>
+      <body className="antialiased">
+        <DesignSystemProvider theme={createTheme({})}>
+          <ThemeProvider>
+            <ThemeWrapper>
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+            </ThemeWrapper>
+          </ThemeProvider>
+        </DesignSystemProvider>
       </body>
     </html>
   );
