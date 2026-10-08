@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: riyas-portfolio
+    env: node
+    buildCommand: npm run build
+    startCommand: npm start
+    # Critical for Next.js standalone output on Render
+    envVars:
+      - key: NODE_VERSION
+        value: 20.x
+      - key: PORT
+        value: 10000
+      - key: HOSTNAME
+        value: 0.0.0.0
+    # Optional: set plan
+    # plan: free
+    # Auto-deploy from GitHub (uncomment and configure if desired)
+    # autoDeploy: true
+    # repo: <your-github-repo-url>
+    # branch: main
