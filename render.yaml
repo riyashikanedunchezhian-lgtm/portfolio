@@ -3,7 +3,7 @@ services:
     name: riyas-portfolio
     env: node
     buildCommand: npm run build
-    startCommand: npm start
+    startCommand: node .next/standalone/server.js
     # Critical for Next.js standalone output on Render
     envVars:
       - key: NODE_VERSION
